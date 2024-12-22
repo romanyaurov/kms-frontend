@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { HeaderComponent } from './layout/header.component';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  selector: 'kms-root',
+  imports: [RouterModule, HeaderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <kms-header></kms-header>
+    <router-outlet></router-outlet>
+  `,
 })
-export class AppComponent {
-  title = 'kms-desktop';
-}
+export class AppComponent {}

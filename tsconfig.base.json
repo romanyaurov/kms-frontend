@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@kms-frontend/feature-projects": [
+        "libs/projects/feature-projects/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -2,7 +2,7 @@
   "name": "kms-desktop",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "app",
+  "prefix": "kms",
   "sourceRoot": "apps/kms-desktop/src",
   "tags": [],
   "targets": {
@@ -13,19 +13,23 @@
         "outputPath": "dist/apps/kms-desktop",
         "index": "apps/kms-desktop/src/index.html",
         "main": "apps/kms-desktop/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/kms-desktop/tsconfig.app.json",
         "assets": [
-          {
-            "glob": "**/*",
-            "input": "apps/kms-desktop/public"
-          }
+          "apps/kms-desktop/src/favicon.ico",
+          "apps/kms-desktop/src/assets"
         ],
         "styles": ["apps/kms-desktop/src/styles.css"],
         "scripts": []
       },
       "configurations": {
         "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/kms-desktop/src/environments/environment.ts",
+              "with": "apps/kms-desktop/src/environments/environment.prod.ts"
+            }
+          ],
           "budgets": [
             {
               "type": "initial",

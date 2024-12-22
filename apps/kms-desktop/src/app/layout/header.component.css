@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  height: 50px;
+  background-color: var(--ruddy-blue);
+
+  .header__test {
+    width: fit-content;
+    margin: 0 auto;
+    color: var(--baby-powder);
+  }
+}
