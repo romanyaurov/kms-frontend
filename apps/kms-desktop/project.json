@@ -17,7 +17,8 @@
         "tsConfig": "apps/kms-desktop/tsconfig.app.json",
         "assets": [
           "apps/kms-desktop/src/favicon.ico",
-          "apps/kms-desktop/src/site.webmanifest",
+          "apps/kms-desktop/src/manifest.webmanifest",
+          "apps/kms-desktop/src/service-worker.js",
           "apps/kms-desktop/src/assets"
         ],
         "styles": ["apps/kms-desktop/src/styles.css"],
@@ -58,6 +59,10 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "host": "0.0.0.0",
+        "port": 4200
+      },
       "configurations": {
         "production": {
           "buildTarget": "kms-desktop:build:production"

@@ -1,6 +1,10 @@
 {
   "name": "Kaban management system",
   "short_name": "Kaban",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#71a9f7",
+  "background_color": "#fafffd",
   "icons": [
     {
       "src": "assets/icons/android-chrome-192x192.png",
@@ -12,8 +16,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  ]
 }
