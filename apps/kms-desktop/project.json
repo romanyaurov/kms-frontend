@@ -17,6 +17,7 @@
         "tsConfig": "apps/kms-desktop/tsconfig.app.json",
         "assets": [
           "apps/kms-desktop/src/favicon.ico",
+          "apps/kms-desktop/src/site.webmanifest",
           "apps/kms-desktop/src/assets"
         ],
         "styles": ["apps/kms-desktop/src/styles.css"],
