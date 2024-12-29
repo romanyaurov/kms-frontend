@@ -1,11 +1,21 @@
 :host {
   display: block;
-  height: 50px;
-  background-color: var(--ruddy-blue);
+  padding: 1rem 2rem 0;
+  margin-bottom: 2rem;
 
-  .header__test {
-    width: fit-content;
-    margin: 0 auto;
-    color: var(--baby-powder);
+  .logo {
+    height: 36px;
+    width: 36px;
+    background-image: url('/assets/logo-image.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 1rem;
+  }
+
+  .toolbar-module {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 }

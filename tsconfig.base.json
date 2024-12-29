@@ -15,8 +15,20 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@kms-frontend/auth/data-access": ["libs/auth/data-access/src/index.ts"],
+      "@kms-frontend/auth/feature-login": [
+        "libs/auth/feature-login/src/index.ts"
+      ],
+      "@kms-frontend/auth/feature-register": [
+        "libs/auth/feature-register/src/index.ts"
+      ],
+      "@kms-frontend/core/api-types": ["libs/core/api-types/src/index.ts"],
+      "@kms-frontend/core/data-access": ["libs/core/data-access/src/index.ts"],
       "@kms-frontend/feature-projects": [
         "libs/projects/feature-projects/src/index.ts"
+      ],
+      "@kms-frontend/projects/data-access": [
+        "libs/projects/data-access/src/index.ts"
       ]
     }
   },
