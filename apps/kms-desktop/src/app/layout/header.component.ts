@@ -1,12 +1,27 @@
-import { ChangeDetectionStrategy, Component, inject, input, output, Signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { User } from '@kms-frontend/core/api-types';
 import { ToolbarModule } from 'primeng/toolbar';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
+import { RouterModule } from '@angular/router';
+import { AvatarUrl } from '@kms-frontend/core/tools';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [ToolbarModule, AvatarModule, ButtonModule],
+  imports: [
+    ToolbarModule,
+    AvatarModule,
+    ButtonModule,
+    RouterModule,
+    AvatarUrl,
+    CommonModule,
+  ],
   selector: 'kms-header',
   styleUrl: 'header.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,21 +32,33 @@ import { ButtonModule } from 'primeng/button';
       <ng-template #start>
         <div class="toolbar-module">
           <div class="logo"></div>
-          <p-button label="Projects" text plain [disabled]="!isAuthenticated()"></p-button>
-          <p-button label="Users" text plain [disabled]="!isAuthenticated()"></p-button>
+          <p-button
+            *ngIf="isAuthenticated()"
+            label="Projects"
+            text
+            plain
+          ></p-button>
+          <p-button
+            *ngIf="isAuthenticated()"
+            label="Users"
+            text
+            plain
+          ></p-button>
         </div>
       </ng-template>
-      @if (isAuthenticated() && !!user()) {
-      <ng-template #end>
+      <ng-template *ngIf="isAuthenticated()" #end>
         <div class="toolbar-module">
-          <p-button label="Logout" severity="contrast" size="small" (click)="onLogout()"></p-button>
-          <p-avatar
-            label="A"
-            shape="circle"
-          ></p-avatar>
+          <p-button
+            label="Logout"
+            severity="contrast"
+            size="small"
+            (click)="onLogout()"
+          ></p-button>
+          <ng-container *ngIf="user() as userData">
+            <p-avatar shape="circle" [image]="userData.avatar | avatarUrl"></p-avatar>
+          </ng-container>
         </div>
       </ng-template>
-      }
     </p-toolbar>
   `,
 })
@@ -44,5 +71,4 @@ export class HeaderComponent {
   protected onLogout() {
     this.handleLogout.emit();
   }
-
 }

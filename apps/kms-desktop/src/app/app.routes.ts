@@ -10,12 +10,18 @@ export const appRoutes: Route[] = [
   {
     path: 'login',
     loadComponent: () =>
-      import('@kms-frontend/auth/feature-login').then((m) => m.LoginComponent),
+      import('@kms-frontend/feature-login').then((m) => m.LoginComponent),
   },
   {
     path: 'projects',
     loadComponent: () =>
       import('@kms-frontend/feature-projects').then((m) => m.ProjectsComponent),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'projects/:projectSlug',
+    loadComponent: () =>
+      import('@kms-frontend/feature-board').then((m) => m.BoardComponent),
     canActivate: [AuthGuard],
   },
 ];

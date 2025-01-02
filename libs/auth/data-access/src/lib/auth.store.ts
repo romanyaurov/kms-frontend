@@ -1,6 +1,6 @@
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
+import { signalStore, withState, withMethods, patchState, withComputed } from '@ngrx/signals';
 import { pipe, switchMap, tap } from 'rxjs';
 import { AuthService } from './services/auth.service';
 import { tapResponse } from '@ngrx/operators';
@@ -15,19 +15,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 interface AuthState {
   user: User | null;
-  isAuthenticated: boolean;
   isLoading: boolean;
 }
 
 const initialAuthState: AuthState = {
   user: null,
-  isAuthenticated: false,
   isLoading: false,
 };
 
 export const AuthStore = signalStore(
   { providedIn: 'root' },
   withState(initialAuthState),
+  withComputed(({ user }) => ({
+    isAuthenticated: computed(() => !!user())
+  })),
   withMethods(
     (store, authService = inject(AuthService), router = inject(Router)) => ({
       getUser: rxMethod<{}>(
@@ -39,7 +40,6 @@ export const AuthStore = signalStore(
                 next: (userResponse: UserResponse) => {
                   patchState(store, {
                     user: userResponse.user,
-                    isAuthenticated: true,
                     isLoading: false,
                   });
                 },
@@ -61,7 +61,6 @@ export const AuthStore = signalStore(
                 next: (loginResponse: UserResponse) => {
                   patchState(store, {
                     user: loginResponse.user,
-                    isAuthenticated: true,
                     isLoading: false,
                   });
                   router.navigateByUrl('projects');
@@ -84,7 +83,6 @@ export const AuthStore = signalStore(
                 next: (logoutResponse: DefaultResponse) => {
                   patchState(store, {
                     user: null,
-                    isAuthenticated: false,
                     isLoading: false,
                   });
                   router.navigateByUrl('login');
@@ -92,7 +90,6 @@ export const AuthStore = signalStore(
                 error: (err) => {
                   patchState(store, {
                     user: null,
-                    isAuthenticated: false,
                     isLoading: false,
                   });
                   router.navigateByUrl('login');
@@ -109,7 +106,6 @@ export const AuthStore = signalStore(
             next: (userResponse: UserResponse) => {
               patchState(store, {
                 user: userResponse.user,
-                isAuthenticated: true,
                 isLoading: false,
               });
             },
@@ -117,7 +113,6 @@ export const AuthStore = signalStore(
               if ((err as HttpErrorResponse).status === 401) {
                 patchState(store, {
                   user: null,
-                  isAuthenticated: false,
                   isLoading: false,
                 });
               } else {

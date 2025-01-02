@@ -1,0 +1,10 @@
+{
+  "name": "board-feature-board",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/board/feature-board/src",
+  "prefix": "lib",
+  "tags": [],
+  "projectType": "library",
+  "// targets": "to see all targets run: nx show project board-feature-board --web",
+  "targets": {}
+}

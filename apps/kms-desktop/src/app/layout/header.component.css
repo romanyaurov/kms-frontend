@@ -13,6 +13,17 @@
     margin-right: 1rem;
   }
 
+  .no-user-logo {
+    height: 36px;
+    width: 136px;
+    background-image: url('/assets/logo-name.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 1rem;
+    margin: 0 auto;
+  }
+
   .toolbar-module {
     display: flex;
     align-items: center;
