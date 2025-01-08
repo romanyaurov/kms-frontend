@@ -1,1 +1,1 @@
-export * from './lib/ui-task/ui-task.component';
+export { TaskComponent } from './lib/task.component';

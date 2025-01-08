@@ -1,0 +1,1 @@
+export { IssueDetailsStore } from './lib/issue-details.store';
