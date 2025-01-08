@@ -1,0 +1,10 @@
+{
+  "name": "ui-issue-detail",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/issue-detail/src",
+  "prefix": "lib",
+  "tags": [],
+  "projectType": "library",
+  "// targets": "to see all targets run: nx show project ui-issue-detail --web",
+  "targets": {}
+}

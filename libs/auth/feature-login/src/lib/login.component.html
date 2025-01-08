@@ -1,0 +1,19 @@
+<form [formGroup]="loginForm">
+  <kms-input-text
+    [control]="loginForm.controls.email"
+    label="Email"
+    icon="fa fa-at"
+  ></kms-input-text>
+  <kms-input-text
+    [control]="loginForm.controls.password"
+    label="Password"
+    icon="fa fa-key"
+    password
+  ></kms-input-text>
+  <kms-button
+    label="Enter"
+    [disabled]="!loginForm.valid"
+    (onClick)="submitForm()"
+    fullWidth
+  ></kms-button>
+</form>

@@ -20,7 +20,10 @@
           "apps/kms-desktop/src/manifest.webmanifest",
           "apps/kms-desktop/src/assets"
         ],
-        "styles": ["apps/kms-desktop/src/styles.css"],
+        "styles": [
+          "apps/kms-desktop/src/styles.css",
+          "node_modules/font-awesome/css/font-awesome.min.css"
+        ],
         "scripts": []
       },
       "configurations": {

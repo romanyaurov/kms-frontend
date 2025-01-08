@@ -1,44 +1,27 @@
-<ng-container *ngIf="boardStore.data() as boardData">
-  <div class="board" cdkDropListGroup>
+<ng-container *ngIf="!boardStore.isLoading(); else skeleton">
+  <div
+    class="board__content"
+    *ngIf="boardStore.data() as boardData"
+    cdkDropListGroup
+  >
     <ng-container *ngFor="let column of boardData.columns | sortByOrder">
-      <p-panel header="{{ column.title }}" [style]="{ width: '350px' }">
-        <div class="cards" cdkDropList [cdkDropListData]="column.slug" (cdkDropListDropped)="drop($event)">
-          <ng-container
-            *ngFor="
-              let issue of boardData.issues
-                | filterByColumn : column.slug
-                | sortByOrder
-            "
-          >
-            <p-card cdkDrag [cdkDragData]="issue.id">
-              <ng-template #title>
-                {{ issue.title }}
-              </ng-template>
-              <p>{{ issue.description }}</p>
-              <div class="tasks" *ngIf="issue.tasks">
-                <div class="task" *ngFor="let task of issue.tasks">
-                  <p-checkbox
-                    [inputId]="task.id"
-                    name="task"
-                    value="{{ task.text }}"
-                  ></p-checkbox>
-                  <label for="{{ task.id }}">{{ task.text }}</label>
-                </div>
-              </div>
-              <ng-template *ngIf="issue.assignedTo" #footer>
-                <p-avatar-group>
-                  <ng-container *ngFor="let user of issue.assignedTo">
-                    <p-avatar
-                      shape="circle"
-                      [image]="user.avatar | avatarUrl"
-                    ></p-avatar>
-                  </ng-container>
-                </p-avatar-group>
-              </ng-template>
-            </p-card>
-          </ng-container>
-        </div>
-      </p-panel>
+      <kms-panel
+        [title]="column.title"
+        [slug]="column.slug"
+        [issues]="boardData.issues | filterByColumn : column.slug"
+        [connectedTo]="getConnectedPanels(boardData.columns)"
+        (onDrop)="moveIssue($event)"
+        (getDetails)="showDetails($event)"
+        ></kms-panel>
     </ng-container>
   </div>
 </ng-container>
+
+<ng-template #skeleton>
+  <div class="board__skeleton">skeleton</div>
+</ng-template>
+
+<kms-issue-detail
+  *ngIf="issueDetailService.isVisible() === true"
+  (onHide)="hideDetails()"
+></kms-issue-detail>

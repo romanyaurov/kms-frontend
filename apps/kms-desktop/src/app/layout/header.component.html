@@ -1,0 +1,16 @@
+<div class="header">
+  <div class="header__start">
+    <div class="header__menu" *ngIf="isAuthenticated()">
+      <kms-button label="Projects" link="/projects" plain></kms-button>
+    </div>
+  </div>
+  <div class="header__middle">
+    <div class="header__logo"></div>
+  </div>
+  <div class="header__end">
+    <ng-container *ngIf="user() as userData">
+      <kms-button label="Logout" (onClick)="onLogout()"></kms-button>
+      <kms-avatar [image]="userData.avatar | avatarUrl"></kms-avatar>
+    </ng-container>
+    </div>
+</div>

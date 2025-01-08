@@ -1,0 +1,7 @@
+:host {
+  display: flex;
+  
+  kms-avatar:not(:first-child) {
+    margin-left: -15px;
+  }
+}

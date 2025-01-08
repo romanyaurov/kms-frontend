@@ -11,6 +11,8 @@ import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 import { AvatarUrl } from '@kms-frontend/core/tools';
 import { CommonModule } from '@angular/common';
+import { AvatarComponent } from '@kms-frontend/ui/avatar';
+import { ButtonComponent } from '@kms-frontend/ui/button';
 
 @Component({
   standalone: true,
@@ -21,46 +23,49 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     AvatarUrl,
     CommonModule,
+    AvatarComponent,
+    ButtonComponent
   ],
   selector: 'kms-header',
   styleUrl: 'header.component.css',
+  templateUrl: 'header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <p-toolbar
-      [style]="{ 'border-radius': '3rem', padding: '1rem 1rem 1rem 1.5rem' }"
-    >
-      <ng-template #start>
-        <div class="toolbar-module">
-          <div class="logo"></div>
-          <p-button
-            *ngIf="isAuthenticated()"
-            label="Projects"
-            text
-            plain
-          ></p-button>
-          <p-button
-            *ngIf="isAuthenticated()"
-            label="Users"
-            text
-            plain
-          ></p-button>
-        </div>
-      </ng-template>
-      <ng-template *ngIf="isAuthenticated()" #end>
-        <div class="toolbar-module">
-          <p-button
-            label="Logout"
-            severity="contrast"
-            size="small"
-            (click)="onLogout()"
-          ></p-button>
-          <ng-container *ngIf="user() as userData">
-            <p-avatar shape="circle" [image]="userData.avatar | avatarUrl"></p-avatar>
-          </ng-container>
-        </div>
-      </ng-template>
-    </p-toolbar>
-  `,
+  // template: `
+  //   <p-toolbar
+  //     [style]="{ 'border-radius': '3rem', padding: '1rem 1rem 1rem 1.5rem' }"
+  //   >
+  //     <ng-template #start>
+  //       <div class="toolbar-module">
+  //         <div class="logo"></div>
+  //         <p-button
+  //           *ngIf="isAuthenticated()"
+  //           label="Projects"
+  //           text
+  //           plain
+  //         ></p-button>
+  //         <p-button
+  //           *ngIf="isAuthenticated()"
+  //           label="Users"
+  //           text
+  //           plain
+  //         ></p-button>
+  //       </div>
+  //     </ng-template>
+  //     <ng-template *ngIf="isAuthenticated()" #end>
+  //       <div class="toolbar-module">
+  //         <p-button
+  //           label="Logout"
+  //           severity="contrast"
+  //           size="small"
+  //           (click)="onLogout()"
+  //         ></p-button>
+  //         <ng-container *ngIf="user() as userData">
+  //           <p-avatar shape="circle" [image]="userData.avatar | avatarUrl"></p-avatar>
+  //         </ng-container>
+  //       </div>
+  //     </ng-template>
+  //   </p-toolbar>
+  // `,
 })
 export class HeaderComponent {
   readonly user = input.required<User | null>();

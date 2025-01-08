@@ -1,0 +1,10 @@
+{
+  "name": "ui-task",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/task/src",
+  "prefix": "lib",
+  "tags": [],
+  "projectType": "library",
+  "// targets": "to see all targets run: nx show project ui-task --web",
+  "targets": {}
+}

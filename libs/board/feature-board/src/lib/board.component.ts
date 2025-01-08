@@ -6,21 +6,18 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import {
-  CdkDragDrop,
-  CdkDrag,
-  CdkDropList,
-  CdkDropListGroup,
-} from '@angular/cdk/drag-drop';
+import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { PanelModule } from 'primeng/panel';
 import { CardModule } from 'primeng/card';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { AvatarModule } from 'primeng/avatar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { BoardStore } from '@kms-frontend/board/data-access';
-import { AvatarUrl } from '@kms-frontend/core/tools';
-import { SortByOrder } from './pipes/sort-by-order.pipe';
-import { FilterByColumn } from './pipes/filter-by-column.pipe';
+import { SortByOrder } from '@kms-frontend/core/tools';
+import { FilterByColumn } from '@kms-frontend/core/tools';
+import { PanelComponent } from '@kms-frontend/ui/panel';
+import { Column } from '@kms-frontend/core/api-types';
+import { IssueDetailComponent, IssueDetailService } from '@kms-frontend/ui/issue-detail';
 
 @Component({
   standalone: true,
@@ -36,16 +33,18 @@ import { FilterByColumn } from './pipes/filter-by-column.pipe';
     FilterByColumn,
     AvatarGroupModule,
     AvatarModule,
-    AvatarUrl,
     CheckboxModule,
-    CdkDrag,
-    CdkDropList,
     CdkDropListGroup,
+    PanelComponent,
+    IssueDetailComponent,
   ],
+  providers: [IssueDetailService],
 })
 export class BoardComponent implements OnInit {
+  protected readonly issueDetailService = inject(IssueDetailService);
   protected readonly boardStore = inject(BoardStore);
   private readonly route = inject(ActivatedRoute);
+
   protected projectSlug!: string;
 
   ngOnInit(): void {
@@ -53,14 +52,27 @@ export class BoardComponent implements OnInit {
     this.boardStore.getBoardData({ projectSlug: this.projectSlug });
   }
 
-  public drop(event: CdkDragDrop<any>) {
-    this.boardStore.moveIssue({
-      issueId: event.item.data,
-      columnSlug: event.container.data,
-      order: event.currentIndex + 1,
-    });
-    // console.log(event.item.data); // issue id
-    // console.log(event.container.data); // new column slug
-    // console.log(event.currentIndex + 1); // new order
+  public moveIssue({
+    issueId,
+    columnSlug,
+    order,
+  }: {
+    issueId: string;
+    columnSlug: string;
+    order: number;
+  }) {
+    this.boardStore.moveIssue({ issueId, columnSlug, order });
+  }
+
+  public getConnectedPanels(columns: Column[]): string[] {
+    return columns.map((column) => column.slug);
+  }
+
+  protected showDetails(event: string) {
+    this.issueDetailService.setVisible();
+  }
+
+  protected hideDetails() {
+    this.issueDetailService.setInvisible();
   }
 }

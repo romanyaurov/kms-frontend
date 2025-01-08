@@ -8,13 +8,20 @@ import { AuthStore } from '@kms-frontend/auth/data-access';
   selector: 'kms-root',
   imports: [RouterModule, HeaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: `
+    .main-app-container {
+      padding-top: 7rem;
+    }
+  `,
   template: `
     <kms-header
       [isAuthenticated]="authStore.isAuthenticated()"
       [user]="authStore.user()"
       (handleLogout)="authStore.logout({})"
     ></kms-header>
-    <router-outlet></router-outlet>
+    <div class="main-app-container">
+      <router-outlet></router-outlet>
+    </div>
   `,
 })
 export class AppComponent {

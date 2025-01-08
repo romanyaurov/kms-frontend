@@ -11,12 +11,14 @@ interface BoardState {
   data: (Project & { issues: Issue[] }) | null;
   dataBackup: (Project & { issues: Issue[] }) | null;
   isLoading: boolean;
+  isUpdating: boolean;
 }
 
 const InitialBoardState: BoardState = {
   data: null,
   dataBackup: null,
   isLoading: false,
+  isUpdating: false,
 };
 
 export const BoardStore = signalStore(
@@ -54,7 +56,7 @@ export const BoardStore = signalStore(
       pipe(
         tap(({ issueId, columnSlug, order }) =>
           patchState(store, {
-            isLoading: true,
+            isUpdating: true,
             dataBackup: store.data(),
             data: {
               ...store.data()!,
@@ -73,20 +75,20 @@ export const BoardStore = signalStore(
               next: (moveIssueResponse: DefaultResponse) => {
                 if (moveIssueResponse.error) {
                   patchState(store, {
-                    isLoading: false,
+                    isUpdating: false,
                     data: store.dataBackup(),
                     dataBackup: null,
                   });
                 } else {
                   patchState(store, {
-                    isLoading: false,
+                    isUpdating: false,
                     dataBackup: null,
                   });
                 }
               },
               error: (err) => {
                 patchState(store, {
-                  isLoading: false,
+                  isUpdating: false,
                   data: store.dataBackup(),
                   dataBackup: null,
                 });

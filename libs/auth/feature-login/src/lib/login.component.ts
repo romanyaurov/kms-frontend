@@ -1,28 +1,29 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { AuthStore } from '@kms-frontend/auth/data-access';
+import { InputTextComponent } from '@kms-frontend/ui/input-text';
+import { resetDirtyValidator } from '@kms-frontend/core/tools';
+import { ButtonComponent } from '@kms-frontend/ui/button';
 
 @Component({
   selector: 'kms-login-component',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule],
-  template: `
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <label>
-        <input formControlName="email" />
-      </label>
-      <label>
-        <input formControlName="password" />
-      </label>
-      <button type="submit">Enter</button>
-    </form>
-  `,
+  imports: [
+    ReactiveFormsModule,
+    InputTextComponent,
+    CommonModule,
+    ButtonComponent,
+  ],
+  styleUrl: 'login.component.css',
+  templateUrl: 'login.component.html',
 })
 export class LoginComponent {
   private readonly authStore = inject(AuthStore);
@@ -32,11 +33,16 @@ export class LoginComponent {
     email: FormControl<string>;
     password: FormControl<string>;
   }> = this.fb.group({
-    email: [''],
-    password: [''],
+    email: ['', [Validators.required, Validators.email, resetDirtyValidator()]],
+    password: [
+      '',
+      [Validators.required, Validators.minLength(6), resetDirtyValidator()],
+    ],
   });
 
-  protected onSubmit() {
-    this.authStore.login(this.loginForm.getRawValue());
+  protected submitForm() {
+    if (this.loginForm.valid) {
+      this.authStore.login(this.loginForm.getRawValue());
+    }
   }
 }

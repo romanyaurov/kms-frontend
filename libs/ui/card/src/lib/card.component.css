@@ -1,0 +1,78 @@
+:host {
+  display: block;
+  width: 350px;
+  margin: 0 auto;
+  padding-right: 10px;
+  padding-left: 10px;
+  border: 1px solid #ebebeb35;
+  background-color: white;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 0px 10px -5px rgba(34, 60, 80, 0.2);
+
+  &>* {
+    user-select: none;
+  }
+
+  .grab-zone {
+    position: absolute;
+    right: 1px;
+    padding: 7px;
+    height: 2rem;
+    width: 2rem;
+    cursor: grab;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .gl {
+      display: flex;
+      justify-content: space-between;
+
+      .gd {
+        background-color: lightgray;
+        height: 3px;
+        width: 3px;
+        border-radius: 50%;
+      }
+    }
+
+    &:hover .gd {
+      background-color: gray;
+    }
+  }
+
+  .card-title {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    padding-right: 28px;
+    padding-left: 5px;
+    padding-top: 5px;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  .card-description {
+    padding: 10px 5px;
+    color: gray;
+    font-style: italic;
+  }
+
+  .card-footer {
+    margin-top: 5px;
+    border-top: 1px solid #ebebeb;
+    padding: 10px 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    kms-time-ago {
+      display: flex;
+      justify-content: end;
+      align-items: end;
+      font-style: italic;
+      color: #d7d7d7;
+    }
+  }
+}

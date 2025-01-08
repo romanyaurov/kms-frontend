@@ -1,0 +1,10 @@
+{
+  "name": "ui-avatar-group",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/avatar-group/src",
+  "prefix": "lib",
+  "tags": [],
+  "projectType": "library",
+  "// targets": "to see all targets run: nx show project ui-avatar-group --web",
+  "targets": {}
+}

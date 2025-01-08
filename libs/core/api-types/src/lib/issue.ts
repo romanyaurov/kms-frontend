@@ -4,17 +4,21 @@ export interface Issue {
   description: string;
   column: string;
   order: number;
-  tasks?: {
-    id: string;
-    text: string;
-    isCompleted: boolean;
-  }[];
-  assignedTo?: {
-    id: string;
-    email: string;
-    avatar: string;
-  }[];
+  tasks?: Task[];
+  assignedTo?: AssignedTo[];
   deadline?: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Task {
+  id: string;
+  text: string;
+  isCompleted: boolean;
+}
+
+export interface AssignedTo {
+  id: string;
+  email: string;
+  avatar: string;
 }

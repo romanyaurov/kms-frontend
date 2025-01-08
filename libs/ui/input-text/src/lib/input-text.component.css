@@ -1,0 +1,74 @@
+:host {
+  --border-color: gray;
+  --outline-color: lightgray;
+  --error-color: red;
+
+  display: block;
+  border: 1px solid var(--outline-color);
+  border-radius: 5px;
+  position: relative;
+  background-color: transparent;
+
+  label {
+    position: absolute;
+    z-index: -5;
+    color: var(--border-color);
+    top: 8px;
+    left: 36px;
+    background-color: white;
+    padding: 0 3px;
+    font-size: 1rem;
+    transition: .2s;
+  }
+
+  i {
+    width: 2rem;
+    color: gray;
+    font-size: 1.3rem;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  input {
+    border: none;
+    width: 15rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    background-color: transparent;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &:has(input:focus) {
+    outline: 1px solid lightgray;
+  }
+
+  &:has(input.ng-invalid.ng-touched) {
+    border-color: var(--error-color);
+
+    .validation-error {
+      display: block;
+    }
+  }
+
+  &:has(input:focus),
+  &:has(input.ng-dirty) {
+    label {
+      top: -8px;
+      font-size: 0.8rem;
+      z-index: 0;
+    }
+  }
+
+  .validation-error {
+    display: none;
+    position: absolute;
+    font-size: 0.8rem;
+    padding: 0 3px;
+    right: 10px;
+    background-color: white;
+    bottom: -8px;
+    color: red;
+  }
+}

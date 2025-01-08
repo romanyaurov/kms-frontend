@@ -1,0 +1,1 @@
+export { TimeAgoComponent } from './lib/time-ago.component';

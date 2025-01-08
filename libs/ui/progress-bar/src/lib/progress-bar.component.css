@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  width: 100%;
+
+  .progress-bar {
+    height: 10px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #ebebeb35;
+    box-shadow: 0px 0px 5px -2px rgba(34, 60, 80, 0.1) inset;
+    overflow: hidden;
+
+    .progress-line {
+      background-color: #b2eeb2;
+      height: 100%;
+    }
+  }
+}
