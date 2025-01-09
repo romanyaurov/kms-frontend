@@ -20,6 +20,7 @@
     height: 100%;
     width: 450px;
     padding: 20px 40px;
+    overflow: scroll;
 
     .issue-title {
       font-size: 18px;
@@ -32,7 +33,17 @@
 
     .issue-description {
 
-      
+
+      &.skeleton {
+
+      }
+    }
+
+    .issue-tasks {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
       &.skeleton {
 
       }
