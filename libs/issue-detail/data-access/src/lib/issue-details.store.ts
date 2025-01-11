@@ -31,6 +31,7 @@ export const IssueDetailsStore = signalStore(
                   issueData: issueDetailsResponse,
                   isLoading: false,
                 });
+                // setTimeout(() => { patchState(store, { isLoading: false }) }, 3000)
               },
               error: (err) => {
                 patchState(store, { isLoading: false });

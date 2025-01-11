@@ -1,0 +1,63 @@
+<div class="backdrop" @fadeInOut>
+  <div class="container" @rollInOut>
+    <div class="close">&times;</div>
+    <ng-container *ngIf="!issueDetailsStore.isLoading(); else skeleton">
+      <div class="content" *ngIf="issueDetailsStore.issueData() as issueData">
+        <div class="data-block title">
+          <span>{{ issueData.title }}</span>
+        </div>
+        <div class="data-block description">
+          <span>{{ issueData.description }}</span>
+        </div>
+        <div class="data-block tasks" *ngIf="issueData.tasks">
+          <kms-progress-bar
+            [tasks]="issueData.tasks"
+          ></kms-progress-bar>
+          <kms-task
+            *ngFor="let task of issueData.tasks"
+            [task]="task"
+            (onToggle)="toggleTask($event)"
+          ></kms-task>
+        </div>
+        <div class="data-block assigned-to" *ngIf="issueData.assignedTo">
+          <div class="user" *ngFor="let user of issueData.assignedTo">
+            <kms-avatar
+              [size]="36"
+              [image]="user.avatar | avatarUrl"
+            ></kms-avatar>
+            <div class="user-description">
+              <div class="user-name">
+                <span>{{ user.firstName }} {{ user.lastName }}</span>
+                <span> &bullet; {{ user.post }}</span>
+              </div>
+              <div class="user-email">
+                {{ user.email }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="data-block timings">
+          <div class="created-at">
+            Created: {{ toReadableDateString(issueData.createdAt) }}
+          </div>
+          <div class="updated-at">
+            Last Update: {{ toReadableDateString(issueData.updatedAt) }}
+          </div>
+          <div class="deadline" *ngIf="issueData.deadline">
+            Deadline: {{ toReadableDateString(issueData.deadline) }}
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="content-skeleton">
+    <div class="data-block title"><div></div></div>
+    <div class="data-block description"><div></div></div>
+    <div class="data-block tasks"><div></div></div>
+    <div class="data-block assigned-to"><div></div></div>
+    <div class="data-block timings"><div></div></div>
+  </div>
+</ng-template>

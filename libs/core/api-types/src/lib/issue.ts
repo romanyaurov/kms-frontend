@@ -19,6 +19,9 @@ export interface Task {
 
 export interface AssignedTo {
   id: string;
+  firstName: string,
+  lastName: string,
+  post: string,
   email: string;
   avatar: string;
 }

@@ -12,64 +12,41 @@ import { IssueDetailsStore } from '@kms-frontend/issue-detail/data-access';
 import { IssueDetailsService } from './services/issue-details.service';
 import { TaskComponent } from '@kms-frontend/ui/task';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { AvatarComponent } from '@kms-frontend/ui/avatar';
+import { AvatarUrl } from '@kms-frontend/core/tools';
+import { ProgressBarComponent } from '@kms-frontend/ui/progress-bar';
 
 @Component({
   standalone: true,
   selector: 'kms-issue-details',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TaskComponent],
-  providers: [],
+  imports: [
+    CommonModule,
+    TaskComponent,
+    AvatarComponent,
+    ProgressBarComponent,
+    AvatarUrl,
+  ],
   styleUrl: 'issue-details.component.css',
+  templateUrl: 'issue-details.component.html',
   animations: [
     trigger('fadeInOut', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('500ms ease-in', style({ opacity: 1 }))
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [animate('300ms ease-out', style({ opacity: 0 }))]),
+    ]),
+    trigger('rollInOut', [
+      transition(':enter', [
+        style({ right: '-450px' }),
+        animate('300ms ease-in', style({ right: 0 })),
       ]),
       transition(':leave', [
-        animate('500ms ease-out', style({ opacity: 0 }))
-      ])
-    ])
+        animate('300ms ease-out', style({ right: '-450px' })),
+      ]),
+    ]),
   ],
-  template: `
-    <div
-      class="sidebar-content"
-      *ngIf="!issueDetailsStore.isLoading(); else skeleton"
-      @fadeInOut
-    >
-      <ng-container *ngIf="issueDetailsStore.issueData() as issueData">
-        <div class="issue-title">
-          <span>{{ issueData.title }}</span>
-        </div>
-        <div class="issue-description">
-          <span>{{ issueData.description }}</span>
-        </div>
-        <div class="issue-tasks" *ngIf="issueData.tasks">
-          <kms-task
-            *ngFor="let task of issueData.tasks"
-            [task]="task"
-            (onToggle)="toggleTask($event)"
-          ></kms-task>
-        </div>
-        <div class="issue-assigned-to" *ngIf="issueData.assignedTo"></div>
-        <div class="issue-created-at"></div>
-        <div class="issue-updated-at"></div>
-        <div class="issue-deadline" *ngIf="issueData.deadline"></div>
-      </ng-container>
-    </div>
-
-    <ng-template #skeleton>
-      <div class="sidebar-content">
-        <div class="skeleton issue-title"></div>
-        <div class="skeleton issue-description"></div>
-        <div class="skeleton issue-tasks"></div>
-        <div class="skeleton issue-assigned-to"></div>
-        <div class="skeleton issue-created-at"></div>
-        <div class="skeleton issue-updated-at"></div>
-        <div class="skeleton issue-deadline"></div>
-      </div>
-    </ng-template>
-  `,
 })
 export class IssueDetailsComponent implements OnInit {
   private readonly elementRef = inject(ElementRef);
@@ -96,5 +73,22 @@ export class IssueDetailsComponent implements OnInit {
 
   toggleTask(event: string) {
     console.log(event);
+  }
+
+  protected toReadableDateString(inputDateDate: string): string {
+    const date = new Date(inputDateDate);
+    const options: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    };
+
+    const formattedDate = new Intl.DateTimeFormat('ru-RU', options)
+      .format(date)
+      .replace(',', '');
+
+    return formattedDate;
   }
 }

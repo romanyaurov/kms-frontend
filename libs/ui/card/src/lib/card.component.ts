@@ -28,7 +28,7 @@ import { TimeAgoComponent } from '@kms-frontend/ui/time-ago';
       <div class="card-title" (click)="handleGetDetails(issue.id)">{{ issue.title }}</div>
       <ng-container *ngIf="issue.tasks">
         <kms-progress-bar
-          [percents]="getProgress(issue.tasks)"
+          [tasks]="issue.tasks"
         ></kms-progress-bar>
       </ng-container>
       <div class="card-description">{{ issue.description }}</div>

@@ -1,52 +1,164 @@
 :host {
-  display: block;
-  position: fixed;
-  top: 5rem;
-  right: 0;
-  background-color: #00000015;
-  
-  height: calc(100% - 5rem);
-  width: 100%;
-  z-index: 8;
-  backdrop-filter: blur(2px);
+  & > * {
+    user-select: none;
+  }
 
-  .sidebar-content {
-    border-top: 1px solid #ebebeb35;
-    box-shadow: 0px 5px 15px 0px rgba(34, 60, 80, 0.2);
-    position: absolute;
-    top: 0;
+  .backdrop {
+    display: block;
+    position: fixed;
+    top: 5rem;
     right: 0;
-    background-color: white;
-    height: 100%;
-    width: 450px;
-    padding: 20px 40px;
-    overflow: scroll;
+    background-color: #00000015;
+    height: calc(100% - 5rem);
+    width: 100%;
+    z-index: 8;
+    backdrop-filter: blur(2px);
 
-    .issue-title {
-      font-size: 18px;
-      border-bottom: 1px solid #ebebeb35;
+    .container {
+      border-top: 1px solid #ebebeb35;
+      box-shadow: 0px 5px 15px 0px rgba(34, 60, 80, 0.2);
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: white;
+      height: 100%;
+      width: 450px;
+      padding: 20px 40px;
+      overflow-y: scroll;
+      overflow-x: visible;
 
-      &.skeleton {
+      .close {
+        color: white;
+        position: absolute;
+        left: -30px;
+        font-size: 20px;
+        z-index: 99;
+        cursor: pointer;
+      }
 
+      .content {
+        .data-block:not(:last-child) {
+          padding-bottom: 10px;
+          margin-bottom: 10px;
+          border-bottom: 1px solid #ebebeb;
+        }
+
+        .title {
+          font-size: 18px;
+          line-height: 20px;
+        }
+
+        .tasks {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          kms-progress-bar {
+            margin-bottom: 5px;
+          }
+        }
+
+        .assigned-to {
+          .user {
+            display: flex;
+            gap: 10px;
+
+            .user-description {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+
+              .user-name span {
+                vertical-align: middle;
+
+                &:not(:first-child) {
+                  font-size: 14px;
+                  color: gray;
+                }
+              }
+
+              .user-email {
+                font-size: 14px;
+                font-style: italic;
+                color: gray;
+              }
+            }
+
+            &:not(:last-child) {
+              margin-bottom: 5px;
+            }
+          }
+        }
+
+        .timings {
+          color: gray;
+          font-style: italic;
+
+          div:not(:last-child) {
+            margin-bottom: 5px;
+          }
+        }
+      }
+
+      .content-skeleton {
+        .data-block {
+          &:not(:last-child) {
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ebebeb;
+          }
+        }
+
+        .title,
+        .description,
+        .tasks,
+        .assigned-to,
+        .timings {
+          div {
+            background: #ebebeb35;
+            background: linear-gradient(
+              90deg,
+              #ebebeb 0%,
+              #ffffff 50%,
+              #ebebeb 100%
+            );
+            background-size: 400% 100%;
+            animation: gradientMove 3s linear infinite;
+            border-radius: 5px;
+          }
+        }
+
+        .title div {
+          height: 20px;
+        }
+
+        .description div {
+          height: 35px;
+        }
+
+        .tasks,
+        .assigned-to {
+          div {
+            height: 128px;
+          }
+        }
+
+        .timings div {
+          height: 64px;
+        }
       }
     }
+  }
+}
 
-    .issue-description {
-
-
-      &.skeleton {
-
-      }
-    }
-
-    .issue-tasks {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      &.skeleton {
-
-      }
-    }
+@keyframes gradientMove {
+  0% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
