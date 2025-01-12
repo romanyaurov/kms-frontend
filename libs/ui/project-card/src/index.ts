@@ -1,0 +1,1 @@
+export { ProjectCardComponent } from './lib/project-card.component';

@@ -47,6 +47,7 @@
       "@kms-frontend/ui/input-text": ["libs/ui/input-text/src/index.ts"],
       "@kms-frontend/ui/panel": ["libs/ui/panel/src/index.ts"],
       "@kms-frontend/ui/progress-bar": ["libs/ui/progress-bar/src/index.ts"],
+      "@kms-frontend/ui/project-card": ["libs/ui/project-card/src/index.ts"],
       "@kms-frontend/ui/task": ["libs/ui/task/src/index.ts"],
       "@kms-frontend/ui/time-ago": ["libs/ui/time-ago/src/index.ts"]
     }
