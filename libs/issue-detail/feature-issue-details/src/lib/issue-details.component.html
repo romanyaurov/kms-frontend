@@ -1,6 +1,6 @@
-<div class="backdrop" @fadeInOut>
-  <div class="container" @rollInOut>
-    <div class="close">&times;</div>
+<div class="backdrop">
+  <div class="container">
+    <div class="close" (click)="onHide.emit()">&times;</div>
     <ng-container *ngIf="!issueDetailsStore.isLoading(); else skeleton">
       <div class="content" *ngIf="issueDetailsStore.issueData() as issueData">
         <div class="data-block title">

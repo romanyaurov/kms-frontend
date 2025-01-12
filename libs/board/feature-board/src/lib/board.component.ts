@@ -38,7 +38,6 @@ import { IssueDetailsService, IssueDetailsComponent } from '@kms-frontend/featur
     PanelComponent,
     IssueDetailsComponent
   ],
-  providers: [],
 })
 export class BoardComponent implements OnInit {
   protected readonly issueDetailService = inject(IssueDetailsService);

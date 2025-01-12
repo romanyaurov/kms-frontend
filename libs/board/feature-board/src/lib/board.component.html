@@ -22,6 +22,6 @@
 </ng-template>
 
 <kms-issue-details
-  *ngIf="issueDetailService.isVisible() === true"
+  *ngIf="issueDetailService.isVisible()"
   (onHide)="hideDetails()"
 ></kms-issue-details>

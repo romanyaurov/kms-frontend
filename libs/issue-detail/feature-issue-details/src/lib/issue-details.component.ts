@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 import { IssueDetailsStore } from '@kms-frontend/issue-detail/data-access';
 import { IssueDetailsService } from './services/issue-details.service';
 import { TaskComponent } from '@kms-frontend/ui/task';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { AvatarComponent } from '@kms-frontend/ui/avatar';
 import { AvatarUrl } from '@kms-frontend/core/tools';
 import { ProgressBarComponent } from '@kms-frontend/ui/progress-bar';
@@ -29,24 +28,6 @@ import { ProgressBarComponent } from '@kms-frontend/ui/progress-bar';
   ],
   styleUrl: 'issue-details.component.css',
   templateUrl: 'issue-details.component.html',
-  animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('300ms ease-in', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [animate('300ms ease-out', style({ opacity: 0 }))]),
-    ]),
-    trigger('rollInOut', [
-      transition(':enter', [
-        style({ right: '-450px' }),
-        animate('300ms ease-in', style({ right: 0 })),
-      ]),
-      transition(':leave', [
-        animate('300ms ease-out', style({ right: '-450px' })),
-      ]),
-    ]),
-  ],
 })
 export class IssueDetailsComponent implements OnInit {
   private readonly elementRef = inject(ElementRef);

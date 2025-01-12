@@ -8,11 +8,7 @@ import { AuthStore } from '@kms-frontend/auth/data-access';
   selector: 'kms-root',
   imports: [RouterModule, HeaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: `
-    .main-app-container {
-      padding-top: 7rem;
-    }
-  `,
+  styleUrl: 'app.component.css',
   template: `
     <kms-header
       [isAuthenticated]="authStore.isAuthenticated()"

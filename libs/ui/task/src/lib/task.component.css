@@ -15,15 +15,16 @@
         cursor: pointer;
 
         svg {
-          height: 20px;
-          width: 20px;
-          margin-left: 2px;
-          margin-top: 3px;
+          height: 16px;
+          width: 16px;
+          margin-left: 4px;
+          margin-top: 5px;
 
           path {
             fill: none;
-            stroke: #ffffff;
-            stroke-width: 10px;
+            /* stroke: #ffffff; */
+            stroke: var(--primary);
+            stroke-width: 7px;
             stroke-linecap: round;
             stroke-linejoin: round;
             stroke-dasharray: 100;
@@ -39,8 +40,9 @@
           border-radius: 5px;
           position: absolute;
           z-index: -1;
-          box-shadow: 0px 0px 8px -2px rgba(34, 60, 80, 0.2);
-          border: 1px solid #ebebeb35;
+          /* box-shadow: 0px 0px 8px -2px rgba(34, 60, 80, 0.2); */
+          box-shadow: var(--shadow);
+          /* border: 1px solid #ebebeb35; */
           background-color: #b2eeb200;
           transition: .3s ease-in-out;
         }
@@ -57,8 +59,9 @@
           }
 
           &::before {
-            box-shadow: 0px 0px 8px -2px rgba(34, 60, 80, 0.2) inset;
-            background-color: #b2eeb2;
+            /* box-shadow: 0px 0px 8px -2px rgba(34, 60, 80, 0.2) inset; */
+            box-shadow: var(--inner-shadow);
+            /* background-color: #b2eeb2; */
           }
         }
       }

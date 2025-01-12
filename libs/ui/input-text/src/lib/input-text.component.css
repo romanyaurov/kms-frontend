@@ -2,6 +2,7 @@
   --border-color: gray;
   --outline-color: lightgray;
   --error-color: red;
+  --error-color-semi: #ff00004f;
 
   display: block;
   border: 1px solid var(--outline-color);
@@ -13,9 +14,9 @@
     position: absolute;
     z-index: -5;
     color: var(--border-color);
-    top: 8px;
+    top: 12px;
     left: 36px;
-    background-color: white;
+    background-color: var(--greyLight-1);
     padding: 0 3px;
     font-size: 1rem;
     transition: .2s;
@@ -41,7 +42,11 @@
   }
 
   &:has(input:focus) {
-    outline: 1px solid lightgray;
+    outline: 2px solid lightgray;
+  }
+  
+  &:has(input.ng-invalid.ng-touched:focus) {
+    outline: 2px solid var(--error-color-semi);
   }
 
   &:has(input.ng-invalid.ng-touched) {
@@ -67,7 +72,7 @@
     font-size: 0.8rem;
     padding: 0 3px;
     right: 10px;
-    background-color: white;
+    background-color: var(--greyLight-1);
     bottom: -8px;
     color: red;
   }

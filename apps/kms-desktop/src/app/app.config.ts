@@ -19,7 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideExperimentalZonelessChangeDetection(),
     provideHttpClient(),
     provideRouter(appRoutes),
-    provideAnimations(),
+    // provideAnimations(),
     { provide: API_URL, useValue: environment.api_url },
     { provide: STATIC_URL, useValue: environment.static_url },
     {

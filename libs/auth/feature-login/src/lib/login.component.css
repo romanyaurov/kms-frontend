@@ -1,6 +1,6 @@
 :host {
   display: flex;
-  height: calc(100dvh - 7rem);
+  height: calc(100dvh - 8rem);
   align-items: center;
   justify-content: center;
 
