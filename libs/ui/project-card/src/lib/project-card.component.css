@@ -3,4 +3,52 @@
   background: var(--greyLight-1);
   box-shadow: var(--shadow);
   padding: 1rem;
+  border-radius: 1rem;
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  .container {
+
+    .info-block:not(:last-child) {
+      border-bottom: 1px solid var(--greyLight-2);
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .title {
+      font-size: 18px;
+    }
+
+    .moderator {
+      display: flex;
+      gap: .7rem;
+
+      .moderator__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .moderator__email {
+          font-size: 14px;
+        }
+      }
+    }
+    
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .timings {
+      span {
+        display: block;
+        color: var(--greyLight-3);
+
+        &:not(:last-child) {
+          margin-bottom: 0.2rem;
+        }
+      }
+    }
+  }
 }

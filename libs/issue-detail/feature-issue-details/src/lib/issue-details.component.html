@@ -38,13 +38,13 @@
         </div>
         <div class="data-block timings">
           <div class="created-at">
-            Created: {{ toReadableDateString(issueData.createdAt) }}
+            Created: {{ issueData.createdAt | readableDate }}
           </div>
           <div class="updated-at">
-            Last Update: {{ toReadableDateString(issueData.updatedAt) }}
+            Last Update: {{ issueData.updatedAt | readableDate }}
           </div>
           <div class="deadline" *ngIf="issueData.deadline">
-            Deadline: {{ toReadableDateString(issueData.deadline) }}
+            Deadline: {{ issueData.deadline | readableDate }}
           </div>
         </div>
       </div>

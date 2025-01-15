@@ -14,6 +14,7 @@ import { TaskComponent } from '@kms-frontend/ui/task';
 import { AvatarComponent } from '@kms-frontend/ui/avatar';
 import { AvatarUrl } from '@kms-frontend/core/tools';
 import { ProgressBarComponent } from '@kms-frontend/ui/progress-bar';
+import { ReadableDate } from '@kms-frontend/core/tools';
 
 @Component({
   standalone: true,
@@ -25,6 +26,7 @@ import { ProgressBarComponent } from '@kms-frontend/ui/progress-bar';
     AvatarComponent,
     ProgressBarComponent,
     AvatarUrl,
+    ReadableDate,
   ],
   styleUrl: 'issue-details.component.css',
   templateUrl: 'issue-details.component.html',
@@ -46,7 +48,7 @@ export class IssueDetailsComponent implements OnInit {
   onClick(target: HTMLElement) {
     if (
       !this.elementRef.nativeElement.contains(target) ||
-      target === this.elementRef.nativeElement
+      Array.from(target.classList).includes('backdrop')
     ) {
       this.onHide.emit();
     }

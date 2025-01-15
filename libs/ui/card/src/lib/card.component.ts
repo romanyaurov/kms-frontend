@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CdkDragHandle } from '@angular/cdk/drag-drop';
-import { AssignedTo, Issue, Task } from '@kms-frontend/core/api-types';
+import { Issue, Task } from '@kms-frontend/core/api-types';
 import { AvatarGroupComponent } from '@kms-frontend/ui/avatar-group';
 import { ProgressBarComponent } from '@kms-frontend/ui/progress-bar';
 import { TimeAgoComponent } from '@kms-frontend/ui/time-ago';
+import { FlatProperty } from '@kms-frontend/core/tools';
 
 @Component({
   standalone: true,
@@ -16,6 +17,7 @@ import { TimeAgoComponent } from '@kms-frontend/ui/time-ago';
     AvatarGroupComponent,
     ProgressBarComponent,
     TimeAgoComponent,
+    FlatProperty,
   ],
   styleUrl: 'card.component.css',
   template: `
@@ -25,7 +27,7 @@ import { TimeAgoComponent } from '@kms-frontend/ui/time-ago';
           <div class="gd" *ngFor="let _ of [].constructor(3)"></div>
         </div>
       </div>
-      <div class="card-title" (click)="handleGetDetails(issue.id)">{{ issue.title }}</div>
+      <div class="card-title" (click)="getDetails.emit(issue.id)">{{ issue.title }}</div>
       <ng-container *ngIf="issue.tasks">
         <kms-progress-bar
           [tasks]="issue.tasks"
@@ -35,7 +37,7 @@ import { TimeAgoComponent } from '@kms-frontend/ui/time-ago';
       <div class="card-footer">
         <ng-container *ngIf="issue.assignedTo">
           <kms-avatar-group
-            [avatars]="getAvatarsArray(issue.assignedTo)"
+            [avatars]="issue.assignedTo | flatProperty:'avatar'"
           ></kms-avatar-group>
         </ng-container>
         <kms-time-ago [updatedAt]="issue.updatedAt"></kms-time-ago>
@@ -53,16 +55,5 @@ export class CardComponent {
     }
     const completedTasks = tasks.filter((item) => item.isCompleted).length;
     return (completedTasks / tasks.length) * 100;
-  }
-
-  protected getAvatarsArray(users: AssignedTo[]): string[] {
-    if (!users || users.length === 0) {
-      return [];
-    }
-    return users.map((user) => user.avatar);
-  }
-
-  protected handleGetDetails(issueId: string) {
-    this.getDetails.emit(issueId);
   }
 }

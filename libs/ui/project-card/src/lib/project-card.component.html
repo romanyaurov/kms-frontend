@@ -1,23 +1,46 @@
 <div class="container" *ngIf="project() as projectData">
-  <div class="title">
+  <div class="info-block title">
     <span>{{ projectData.name }}</span>
   </div>
-  <div class="moderator">
-    <div class="moderator__avatar"></div>
-    <div class="moderator__info"></div>
+  <div class="info-block moderator">
+    <div class="moderator__avatar">
+      <kms-avatar
+        [image]="projectData.moderator.avatar | avatarUrl"
+        [size]="36"
+      ></kms-avatar>
+    </div>
+    <div class="moderator__info">
+      <span [identifyUser]="projectData.moderator.id">
+        {{ projectData.moderator.firstName }} {{ projectData.moderator.lastName }}
+      </span>
+      <span class="moderator__email">
+        {{ projectData.moderator.email }}
+      </span>
+    </div>
   </div>
-  <div class="members">
-
+  <div class="info-block members">
+    <kms-avatar-group
+      [avatars]="projectData.participants | flatProperty:'avatar'"
+      [count]="7"
+    ></kms-avatar-group>
   </div>
-  <div class="timings">
+  <div class="info-block actions">
+    <kms-button
+      label="Go To Board"
+      [link]="projectData.slug"
+      fullWidth
+    ></kms-button>
+    <kms-button
+      label="Show Details"
+      fullWidth
+    ></kms-button>
+  </div>
+  <div class="info-block timings">
     <span>
-
+      Created At: {{ projectData.createdAt | readableDate }}
     </span>
     <span>
-
-    </span>
-    <span>
-      
+      Last Action: {{ projectData.updatedAt | readableDate }}
     </span>
   </div>
 </div>
