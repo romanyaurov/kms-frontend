@@ -30,4 +30,28 @@
       margin-bottom: 15px;
     }
   }
+
+  .new-issue {
+    background-color: var(--greyLight-1);
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    width: 350px;
+    height: 4rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--greyLight-3);
+    transition: .3s;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary);
+    }
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
 }

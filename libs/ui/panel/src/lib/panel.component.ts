@@ -30,6 +30,10 @@ import { SortByOrder } from '@kms-frontend/core/tools';
       <ng-container *ngFor="let issue of issues | sortByOrder">
         <kms-card cdkDrag [cdkDragData]="issue.id" [issue]="issue" (getDetails)="onGetDetails($event)"></kms-card>
       </ng-container>
+      <div class="new-issue" (click)="onCreateIssue.emit()">
+        <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+        <span>Add New Issue</span>
+      </div>
     </div>
   `,
 })
@@ -40,6 +44,7 @@ export class PanelComponent {
   readonly connectedTo = input.required<string[]>();
 
   readonly getDetails = output<string>();
+  readonly onCreateIssue = output();
 
   readonly onDrop = output<{
     issueId: string;

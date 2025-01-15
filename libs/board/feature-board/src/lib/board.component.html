@@ -12,6 +12,7 @@
         [connectedTo]="getConnectedPanels(boardData.columns)"
         (onDrop)="moveIssue($event)"
         (getDetails)="showDetails($event)"
+        (onCreateIssue)="createIssue(column.slug)"
         ></kms-panel>
     </ng-container>
   </div>

@@ -13,16 +13,15 @@ import { ProjectCardComponent } from '@kms-frontend/ui/project-card';
   imports: [CommonModule, PanelModule, ButtonModule, RouterModule, ProjectCardComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <!-- @for(project of projectsStore.projects(); track project.slug) {
-      <p-panel header="{{ project.name }}">
-        <a [routerLink]="['/projects', project.slug]">{{ project.slug }}</a>
-      </p-panel>
-    } -->
     <ng-container *ngIf="projectsStore.projects() as projects">
       <kms-project-card 
         *ngFor="let project of projects"
         [project]="project!"
       ></kms-project-card>
+      <div class="new-project" (click)="createNewProject()">
+        <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+        <span>Create New Project</span>
+      </div>
     </ng-container>
   `,
 })
@@ -31,5 +30,9 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectsStore.getProjects({});
+  }
+
+  protected createNewProject() {
+    alert('new project modal window');
   }
 }

@@ -5,4 +5,30 @@
   gap: 1rem;
   padding: 2rem 10rem 0;
 
+  .new-project {
+    background: var(--greyLight-1);
+    box-shadow: var(--shadow);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    cursor: pointer;
+    color: var(--greyLight-3);
+    transition: .3s;
+
+    &:hover {
+      color: var(--primary);
+    }
+
+    i {
+      font-size: 5rem;
+    }
+
+    span {
+      font-size: 1.5rem;
+    }
+
+  }
 }

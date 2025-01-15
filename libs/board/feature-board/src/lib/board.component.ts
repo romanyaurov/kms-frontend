@@ -74,4 +74,8 @@ export class BoardComponent implements OnInit {
   protected hideDetails() {
     this.issueDetailService.setInvisible();
   }
+
+  protected createIssue(columnSlug: string) {
+    alert('create new issue in column ' + columnSlug);
+  }
 }
