@@ -38,10 +38,8 @@
     "@angular/router": "~18.2.0",
     "@ngrx/operators": "^18.1.1",
     "@ngrx/signals": "^18.1.1",
-    "@primeng/themes": "^18.0.2",
     "font-awesome": "^4.7.0",
     "ngx-cookie-service": "^18.0.0",
-    "primeng": "^18.0.2",
     "rxjs": "~7.8.0",
     "zone.js": "~0.14.3"
   }
