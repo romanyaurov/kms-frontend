@@ -2,15 +2,13 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProjectsStore } from '@kms-frontend/projects/data-access';
-import { ButtonModule } from 'primeng/button';
-import { PanelModule } from 'primeng/panel';
 import { ProjectCardComponent } from '@kms-frontend/ui/project-card';
 
 @Component({
   standalone: true,
   selector: 'kms-projects',
   styleUrl: 'projects.component.css',
-  imports: [CommonModule, PanelModule, ButtonModule, RouterModule, ProjectCardComponent],
+  imports: [CommonModule, RouterModule, ProjectCardComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-container *ngIf="projectsStore.projects() as projects">

@@ -7,11 +7,6 @@ import {
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
-import { PanelModule } from 'primeng/panel';
-import { CardModule } from 'primeng/card';
-import { AvatarGroupModule } from 'primeng/avatargroup';
-import { AvatarModule } from 'primeng/avatar';
-import { CheckboxModule } from 'primeng/checkbox';
 import { BoardStore } from '@kms-frontend/board/data-access';
 import { SortByOrder } from '@kms-frontend/core/tools';
 import { FilterByColumn } from '@kms-frontend/core/tools';
@@ -27,13 +22,8 @@ import { DetailsComponent, DetailsService } from '@kms-frontend/ui/details';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    PanelModule,
-    CardModule,
     SortByOrder,
     FilterByColumn,
-    AvatarGroupModule,
-    AvatarModule,
-    CheckboxModule,
     CdkDropListGroup,
     PanelComponent,
     DetailsComponent

@@ -11,8 +11,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { AuthStore, initializeAuth } from '@kms-frontend/auth/data-access';
 import { provideHttpClient } from '@angular/common/http';
 import { API_URL, STATIC_URL } from '@kms-frontend/core/data-access';
-import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,13 +27,5 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     provideAnimationsAsync(),
-    providePrimeNG({
-      theme: {
-        preset: Aura,
-        options: {
-          darkModeSelector: false
-        }
-      },
-    }),
   ],
 };
