@@ -14,9 +14,11 @@
   --greyDark: #9baacf;
 
   --shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
-    -0.2rem -0.2rem 0.5rem var(--white);
+            -0.2rem -0.2rem 0.5rem var(--white);
   --inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
-    inset -0.2rem -0.2rem 0.5rem var(--white);
+                  inset -0.2rem -0.2rem 0.5rem var(--white);
+  --shadow-small: 0.15rem 0.15rem 0.6rem var(--greyLight-2),
+                  -0.15rem -0.15rem 0.5rem var(--white);
 }
 
 @font-face {

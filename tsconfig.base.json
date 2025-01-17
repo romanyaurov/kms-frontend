@@ -40,6 +40,7 @@
       "@kms-frontend/ui/details": ["libs/ui/details/src/index.ts"],
       "@kms-frontend/ui/form": ["libs/ui/form/src/index.ts"],
       "@kms-frontend/ui/input-text": ["libs/ui/input-text/src/index.ts"],
+      "@kms-frontend/ui/modal": ["libs/ui/modal/src/index.ts"],
       "@kms-frontend/ui/panel": ["libs/ui/panel/src/index.ts"],
       "@kms-frontend/ui/progress-bar": ["libs/ui/progress-bar/src/index.ts"],
       "@kms-frontend/ui/project-card": ["libs/ui/project-card/src/index.ts"],

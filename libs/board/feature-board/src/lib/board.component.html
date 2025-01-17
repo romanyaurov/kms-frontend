@@ -28,3 +28,12 @@
   (onHide)="detailService.setInvisible()"
   (onTaskToggle)="toggleTask($event)"
 ></kms-details>
+
+<kms-modal *ngIf="modalService.isVisible()">
+  <div class="modal-content">
+    <kms-form
+      formTitle="Create new Issue"
+      [columns]="boardStore.data()?.columns"
+    ></kms-form>
+  </div>
+</kms-modal>

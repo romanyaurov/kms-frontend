@@ -12,7 +12,7 @@
 
   label {
     position: absolute;
-    z-index: -5;
+    z-index: 0;
     color: var(--border-color);
     top: 12px;
     left: 36px;
@@ -20,6 +20,8 @@
     padding: 0 3px;
     font-size: 1rem;
     transition: .2s;
+    user-select: none;
+    cursor: text;
   }
 
   i {

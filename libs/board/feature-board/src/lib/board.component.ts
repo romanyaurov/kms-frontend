@@ -3,6 +3,8 @@ import {
   Component,
   inject,
   OnInit,
+  TemplateRef,
+  viewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -14,6 +16,8 @@ import { PanelComponent } from '@kms-frontend/ui/panel';
 import { Issue } from '@kms-frontend/core/api-types';
 import { DetailsComponent, DetailsService } from '@kms-frontend/ui/details';
 import { FlatProperty } from '@kms-frontend/core/tools';
+import { ModalComponent, ModalService } from '@kms-frontend/ui/modal';
+import { FormComponent } from '@kms-frontend/ui/form';
 
 @Component({
   standalone: true,
@@ -29,13 +33,15 @@ import { FlatProperty } from '@kms-frontend/core/tools';
     PanelComponent,
     DetailsComponent,
     FlatProperty,
+    ModalComponent,
+    FormComponent,
   ],
 })
 export class BoardComponent implements OnInit {
   protected readonly detailService = inject(DetailsService);
   protected readonly boardStore = inject(BoardStore);
+  protected readonly modalService = inject(ModalService);
   private readonly route = inject(ActivatedRoute);
-
   protected projectSlug!: string;
 
   ngOnInit(): void {

@@ -1,0 +1,85 @@
+<div class="title">
+  {{ formTitle() }}
+</div>
+<div class="input-blocks">
+  <div class="input-block">
+    <label for="title">Title*:</label>
+    <input
+      id="title"
+      type="text"
+      [(ngModel)]="title"
+      placeholder="Enter Title"
+    />
+  </div>
+  <div class="input-block">
+    <label for="description">Description*:</label>
+    <input
+      id="description"
+      type="text"
+      [(ngModel)]="description"
+      placeholder="Enter Description"
+    />
+  </div>
+  <div class="input-block" *ngIf="columns() as columns">
+    <label for=column>Column*:</label>
+    <select id="column">
+      <option
+        *ngFor="let column of columns"
+        value="column.slug"
+      >
+        {{ column.title }}
+      </option>
+    </select>
+  </div>
+  <div class="input-block">
+    <div class="added-data" *ngIf="assignedTo.length > 0">
+      <div class="data-name">Assigned To:</div>
+      <div class="data-list">
+        <div class="data-item" *ngFor="let user of assignedTo">
+          <span class="data-text">{{ user }}</span>
+          <div class="data-remove" (click)="removeFromAssignedTo(user)">&times;</div>
+        </div>
+      </div>
+    </div>
+    <label for="user">User:</label>
+    <input
+      id="user"
+      type="text"
+      [(ngModel)]="user"
+      (keydown.enter)="addToAssignedTo()"
+      placeholder="Enter user's email"
+    />
+    <div class="help">
+      Specify an user's email and press "enter" button
+    </div>
+  </div>
+  <div class="input-block">
+    <div class="added-data" *ngIf="tasks.length > 0">
+      <div class="data-name">Tasks:</div>
+      <div class="data-list">
+        <div class="data-item" *ngFor="let task of tasks">
+          <span class="data-text">{{ task }}</span>
+          <div class="data-remove" (click)="removeFromTasks(task)">&times;</div>
+        </div>
+      </div>
+    </div>
+    <label for="task">Task:</label>
+    <input
+      id="task"
+      type="text"
+      [(ngModel)]="task"
+      (keydown.enter)="addToTasks()"
+      placeholder="Enter task text"
+    />
+    <div class="help">
+      Enter a task text and press "enter" button
+    </div>
+  </div>
+</div>
+<kms-button
+  label="Create Issue"
+  fullWidth
+></kms-button>
+<div class="about">
+  * Required field
+</div>
