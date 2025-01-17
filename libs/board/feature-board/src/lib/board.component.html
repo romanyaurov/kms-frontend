@@ -8,10 +8,10 @@
       <kms-panel
         [title]="column.title"
         [slug]="column.slug"
-        [issues]="boardData.issues | filterByColumn : column.slug"
-        [connectedTo]="getConnectedPanels(boardData.columns)"
+        [issues]="boardData.issues | filterByColumn:column.slug"
+        [connectedTo]="boardData.columns | flatProperty:'slug'"
         (onDrop)="moveIssue($event)"
-        (getDetails)="showDetails($event)"
+        (getDetails)="detailService.setVisible($event)"
         (onCreateIssue)="createIssue(column.slug)"
         ></kms-panel>
     </ng-container>
@@ -24,5 +24,7 @@
 
 <kms-details
   *ngIf="detailService.isVisible()"
-  (onHide)="hideDetails()"
+  [issues]="boardStore.issues()"
+  (onHide)="detailService.setInvisible()"
+  (onTaskToggle)="toggleTask($event)"
 ></kms-details>

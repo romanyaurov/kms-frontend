@@ -1,5 +1,11 @@
-import { inject } from '@angular/core';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { computed, inject } from '@angular/core';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { DefaultResponse, Issue, Project } from '@kms-frontend/core/api-types';
@@ -24,6 +30,9 @@ const InitialBoardState: BoardState = {
 export const BoardStore = signalStore(
   { providedIn: 'root' },
   withState(InitialBoardState),
+  withComputed(({ data }) => ({
+    issues: computed(() => data()!.issues),
+  })),
   withMethods((store, boardService = inject(BoardService)) => ({
     getBoardData: rxMethod<{ projectSlug: string }>(
       pipe(
@@ -90,6 +99,66 @@ export const BoardStore = signalStore(
                 patchState(store, {
                   isUpdating: false,
                   data: store.dataBackup(),
+                  dataBackup: null,
+                });
+                console.error(err);
+              },
+            })
+          );
+        })
+      )
+    ),
+    toggleTaskStatus: rxMethod<{ taskId: string }>(
+      pipe(
+        tap(({ taskId }) =>
+          patchState(store, {
+            isUpdating: true,
+            dataBackup: store.data(),
+            data: {
+              ...store.data()!,
+              issues: (store.data()?.issues as Issue[]).map((issue) => {
+                if (!issue.tasks?.find((task) => task.id === taskId)) {
+                  return issue;
+                } else {
+                  return {
+                    ...issue,
+                    tasks: issue.tasks?.map((task) => {
+                      if (task.id === taskId) {
+                        return {
+                          ...task,
+                          isCompleted: !task.isCompleted,
+                        };
+                      } else {
+                        return task;
+                      }
+                    }),
+                    updatedAt: new Date().toISOString(),
+                  };
+                }
+              }),
+            },
+          })
+        ),
+        switchMap(({ taskId }) => {
+          return boardService.toggleTask(taskId).pipe(
+            tapResponse({
+              next: (toggleTaskResponse: DefaultResponse) => {
+                if (toggleTaskResponse.error) {
+                  patchState(store, {
+                    isUpdating: false,
+                    data: store.dataBackup(),
+                    dataBackup: null,
+                  });
+                } else {
+                  patchState(store, {
+                    isUpdating: false,
+                    dataBackup: null,
+                  });
+                }
+              },
+              error: (err) => {
+                patchState(store, {
+                  isUpdating: false,
                   dataBackup: null,
                 });
                 console.error(err);

@@ -1,21 +1,20 @@
-import { Injectable, signal } from "@angular/core";
-import { Issue } from "@kms-frontend/core/api-types";
+import { Injectable, Signal, signal } from "@angular/core";
 
 @Injectable({ providedIn: 'root' })
 export class DetailsService {
 
-  public issue = signal<Issue | null>(null);
+  public issueId = signal<string | null>(null);
   public isVisible = signal(false);
 
-  public setVisible(issueData: Issue): void {
-    this.issue.set(issueData);
+  public setVisible(issueId: string): void {
+    this.issueId.set(issueId);
     this.isVisible.set(true);
     document.body.style.overflow = "hidden";
   }
 
   public setInvisible(): void {
     this.isVisible.set(false);
-    this.issue.set(null);
+    this.issueId.set(null);
     document.body.style.overflow = "auto";
   }
 }

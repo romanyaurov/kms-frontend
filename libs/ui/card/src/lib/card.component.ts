@@ -27,7 +27,7 @@ import { FlatProperty } from '@kms-frontend/core/tools';
           <div class="gd" *ngFor="let _ of [].constructor(3)"></div>
         </div>
       </div>
-      <div class="card-title" (click)="getDetails.emit(issue)">{{ issue.title }}</div>
+      <div class="card-title" (click)="getDetails.emit(issue.id)">{{ issue.title }}</div>
       <ng-container *ngIf="issue.tasks">
         <kms-progress-bar
           [tasks]="issue.tasks"
@@ -47,7 +47,7 @@ import { FlatProperty } from '@kms-frontend/core/tools';
 })
 export class CardComponent {
   readonly issue = input.required<Issue>();
-  readonly getDetails = output<Issue>();
+  readonly getDetails = output<string>();
 
   protected getProgress(tasks: Task[]): number {
     if (!tasks || tasks.length === 0) {

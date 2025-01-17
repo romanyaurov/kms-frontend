@@ -11,8 +11,9 @@ import { BoardStore } from '@kms-frontend/board/data-access';
 import { SortByOrder } from '@kms-frontend/core/tools';
 import { FilterByColumn } from '@kms-frontend/core/tools';
 import { PanelComponent } from '@kms-frontend/ui/panel';
-import { Column, Issue } from '@kms-frontend/core/api-types';
+import { Issue } from '@kms-frontend/core/api-types';
 import { DetailsComponent, DetailsService } from '@kms-frontend/ui/details';
+import { FlatProperty } from '@kms-frontend/core/tools';
 
 @Component({
   standalone: true,
@@ -26,7 +27,8 @@ import { DetailsComponent, DetailsService } from '@kms-frontend/ui/details';
     FilterByColumn,
     CdkDropListGroup,
     PanelComponent,
-    DetailsComponent
+    DetailsComponent,
+    FlatProperty,
   ],
 })
 export class BoardComponent implements OnInit {
@@ -53,19 +55,11 @@ export class BoardComponent implements OnInit {
     this.boardStore.moveIssue({ issueId, columnSlug, order });
   }
 
-  public getConnectedPanels(columns: Column[]): string[] {
-    return columns.map((column) => column.slug);
-  }
-
-  protected showDetails(event: Issue) {
-    this.detailService.setVisible(event);
-  }
-
-  protected hideDetails() {
-    this.detailService.setInvisible();
-  }
-
   protected createIssue(columnSlug: string) {
     alert('create new issue in column ' + columnSlug);
+  }
+
+  protected toggleTask(taskId: string) {
+    this.boardStore.toggleTaskStatus({ taskId });
   }
 }

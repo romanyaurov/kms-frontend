@@ -1,7 +1,7 @@
 <div class="backdrop">
   <div class="container">
     <div class="close" (click)="onHide.emit()">&times;</div>
-    <ng-container *ngIf="detailsService.issue() as issueData">
+    <ng-container *ngIf="getIssue() as issueData">
       <div class="content">
         <div class="data-block title">
           <span>{{ issueData.title }}</span>

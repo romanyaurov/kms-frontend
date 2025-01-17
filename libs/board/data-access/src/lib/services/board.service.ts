@@ -46,4 +46,10 @@ export class BoardService {
       }
     );
   }
+
+  public toggleTask(taskId: string): Observable<DefaultResponse> {
+    return this.http.post<DefaultResponse>(
+      `${this.api_url}/tasks/${taskId}`, {}, { withCredentials: true }
+    );
+  }
 }
