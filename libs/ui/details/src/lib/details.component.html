@@ -1,8 +1,8 @@
 <div class="backdrop">
   <div class="container">
     <div class="close" (click)="onHide.emit()">&times;</div>
-    <ng-container *ngIf="!issueDetailsStore.isLoading(); else skeleton">
-      <div class="content" *ngIf="issueDetailsStore.issueData() as issueData">
+    <ng-container *ngIf="detailsService.issue() as issueData">
+      <div class="content">
         <div class="data-block title">
           <span>{{ issueData.title }}</span>
         </div>
@@ -16,7 +16,7 @@
           <kms-task
             *ngFor="let task of issueData.tasks"
             [task]="task"
-            (onToggle)="toggleTask($event)"
+            (onToggle)="onTaskToggle.emit($event)"
           ></kms-task>
         </div>
         <div class="data-block assigned-to" *ngIf="issueData.assignedTo">
@@ -51,13 +51,3 @@
     </ng-container>
   </div>
 </div>
-
-<ng-template #skeleton>
-  <div class="content-skeleton">
-    <div class="data-block title"><div></div></div>
-    <div class="data-block description"><div></div></div>
-    <div class="data-block tasks"><div></div></div>
-    <div class="data-block assigned-to"><div></div></div>
-    <div class="data-block timings"><div></div></div>
-  </div>
-</ng-template>

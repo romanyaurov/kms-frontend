@@ -43,7 +43,7 @@ export class PanelComponent {
   readonly issues = input<Issue[]>();
   readonly connectedTo = input.required<string[]>();
 
-  readonly getDetails = output<string>();
+  readonly getDetails = output<Issue>();
   readonly onCreateIssue = output();
 
   readonly onDrop = output<{
@@ -60,7 +60,7 @@ export class PanelComponent {
     });
   }
 
-  protected onGetDetails(issueId: string) {
+  protected onGetDetails(issueId: Issue) {
     this.getDetails.emit(issueId);
   }
 }

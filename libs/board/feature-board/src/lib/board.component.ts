@@ -16,8 +16,8 @@ import { BoardStore } from '@kms-frontend/board/data-access';
 import { SortByOrder } from '@kms-frontend/core/tools';
 import { FilterByColumn } from '@kms-frontend/core/tools';
 import { PanelComponent } from '@kms-frontend/ui/panel';
-import { Column } from '@kms-frontend/core/api-types';
-import { IssueDetailsService, IssueDetailsComponent } from '@kms-frontend/feature-issue-details';
+import { Column, Issue } from '@kms-frontend/core/api-types';
+import { DetailsComponent, DetailsService } from '@kms-frontend/ui/details';
 
 @Component({
   standalone: true,
@@ -36,11 +36,11 @@ import { IssueDetailsService, IssueDetailsComponent } from '@kms-frontend/featur
     CheckboxModule,
     CdkDropListGroup,
     PanelComponent,
-    IssueDetailsComponent
+    DetailsComponent
   ],
 })
 export class BoardComponent implements OnInit {
-  protected readonly issueDetailService = inject(IssueDetailsService);
+  protected readonly detailService = inject(DetailsService);
   protected readonly boardStore = inject(BoardStore);
   private readonly route = inject(ActivatedRoute);
 
@@ -67,12 +67,12 @@ export class BoardComponent implements OnInit {
     return columns.map((column) => column.slug);
   }
 
-  protected showDetails(event: string) {
-    this.issueDetailService.setVisible(event);
+  protected showDetails(event: Issue) {
+    this.detailService.setVisible(event);
   }
 
   protected hideDetails() {
-    this.issueDetailService.setInvisible();
+    this.detailService.setInvisible();
   }
 
   protected createIssue(columnSlug: string) {

@@ -22,7 +22,7 @@
   <div class="board__skeleton">skeleton</div>
 </ng-template>
 
-<kms-issue-details
-  *ngIf="issueDetailService.isVisible()"
+<kms-details
+  *ngIf="detailService.isVisible()"
   (onHide)="hideDetails()"
-></kms-issue-details>
+></kms-details>

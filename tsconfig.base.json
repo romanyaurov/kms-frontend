@@ -23,18 +23,12 @@
       "@kms-frontend/core/data-access": ["libs/core/data-access/src/index.ts"],
       "@kms-frontend/core/tools": ["libs/core/tools/src/index.ts"],
       "@kms-frontend/feature-board": ["libs/board/feature-board/src/index.ts"],
-      "@kms-frontend/feature-issue-details": [
-        "libs/issue-detail/feature-issue-details/src/index.ts"
-      ],
       "@kms-frontend/feature-login": ["libs/auth/feature-login/src/index.ts"],
       "@kms-frontend/feature-projects": [
         "libs/projects/feature-projects/src/index.ts"
       ],
       "@kms-frontend/feature-register": [
         "libs/auth/feature-register/src/index.ts"
-      ],
-      "@kms-frontend/issue-detail/data-access": [
-        "libs/issue-detail/data-access/src/index.ts"
       ],
       "@kms-frontend/projects/data-access": [
         "libs/projects/data-access/src/index.ts"
@@ -43,6 +37,7 @@
       "@kms-frontend/ui/avatar-group": ["libs/ui/avatar-group/src/index.ts"],
       "@kms-frontend/ui/button": ["libs/ui/button/src/index.ts"],
       "@kms-frontend/ui/card": ["libs/ui/card/src/index.ts"],
+      "@kms-frontend/ui/details": ["libs/ui/details/src/index.ts"],
       "@kms-frontend/ui/form": ["libs/ui/form/src/index.ts"],
       "@kms-frontend/ui/input-text": ["libs/ui/input-text/src/index.ts"],
       "@kms-frontend/ui/panel": ["libs/ui/panel/src/index.ts"],

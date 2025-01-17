@@ -1,3 +1,3 @@
-# feature-issue-details
+# ui-details
 
 This library was generated with [Nx](https://nx.dev).
