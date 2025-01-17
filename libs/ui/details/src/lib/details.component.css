@@ -27,8 +27,8 @@
       border-top: 1px solid rgba(255,255,255,0.5);
       border-left: 1px solid rgba(255,255,255,0.5);
       background: var(--greyLight-1);
-      box-shadow:.8rem .8rem 1.4rem var(--greyLight-2), 
-            -.2rem -.2rem 1.8rem var(--white);
+      box-shadow: .8rem .8rem 1.4rem var(--greyLight-2), 
+                  -.2rem -.2rem 1.8rem var(--white);
 
       .close {
         color: var(--greyLight-3);
@@ -111,66 +111,6 @@
           }
         }
       }
-
-      .content-skeleton {
-        .data-block {
-          &:not(:last-child) {
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ebebeb;
-          }
-        }
-
-        .title,
-        .description,
-        .tasks,
-        .assigned-to,
-        .timings {
-          div {
-            background: var(--greyLight-2);
-            background: linear-gradient(
-              90deg,
-              var(--greyLight-2) 0%,
-              var(--greyLight-1) 50%,
-              var(--greyLight-2) 100%
-            );
-            background-size: 400% 100%;
-            animation: gradientMove 3s linear infinite;
-            border-radius: 5px;
-          }
-        }
-
-        .title div {
-          height: 20px;
-        }
-
-        .description div {
-          height: 35px;
-        }
-
-        .tasks,
-        .assigned-to {
-          div {
-            height: 128px;
-          }
-        }
-
-        .timings div {
-          height: 64px;
-        }
-      }
     }
-  }
-}
-
-@keyframes gradientMove {
-  0% {
-    background-position: 100% 50%;
-  }
-  50% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
   }
 }
