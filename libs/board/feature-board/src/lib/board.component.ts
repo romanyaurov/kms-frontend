@@ -3,8 +3,6 @@ import {
   Component,
   inject,
   OnInit,
-  TemplateRef,
-  viewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -13,11 +11,11 @@ import { BoardStore } from '@kms-frontend/board/data-access';
 import { SortByOrder } from '@kms-frontend/core/tools';
 import { FilterByColumn } from '@kms-frontend/core/tools';
 import { PanelComponent } from '@kms-frontend/ui/panel';
-import { Issue } from '@kms-frontend/core/api-types';
+import { CreateIssueRequest, Issue } from '@kms-frontend/core/api-types';
 import { DetailsComponent, DetailsService } from '@kms-frontend/ui/details';
 import { FlatProperty } from '@kms-frontend/core/tools';
 import { ModalComponent, ModalService } from '@kms-frontend/ui/modal';
-import { FormComponent } from '@kms-frontend/ui/form';
+import { IssueFormComponent } from '@kms-frontend/ui/form';
 
 @Component({
   standalone: true,
@@ -34,7 +32,7 @@ import { FormComponent } from '@kms-frontend/ui/form';
     DetailsComponent,
     FlatProperty,
     ModalComponent,
-    FormComponent,
+    IssueFormComponent,
   ],
 })
 export class BoardComponent implements OnInit {
@@ -61,8 +59,13 @@ export class BoardComponent implements OnInit {
     this.boardStore.moveIssue({ issueId, columnSlug, order });
   }
 
-  protected createIssue(columnSlug: string) {
-    alert('create new issue in column ' + columnSlug);
+  protected createIssue(issueData: Omit<CreateIssueRequest, 'project'>) {
+    const newIssue: CreateIssueRequest = {
+      ...issueData,
+      project: this.projectSlug,
+    };
+
+    console.log(newIssue);
   }
 
   protected toggleTask(taskId: string) {

@@ -41,5 +41,8 @@ export const ProjectsStore = signalStore(
         })
       )
     ),
+    checkEmail(email: string) {
+      return projectsService.checkEmail(email);
+    }
   }))
 );

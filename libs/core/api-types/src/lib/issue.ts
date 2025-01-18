@@ -25,3 +25,13 @@ export interface AssignedTo {
   email: string;
   avatar: string;
 }
+
+export interface CreateIssueRequest {
+  title: string;
+  description: string;
+  column: string;
+  project: string;
+  assignedTo?: string[];
+  tasks?: string[];
+  deadline?: string;
+}

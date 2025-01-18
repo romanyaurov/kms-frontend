@@ -12,7 +12,7 @@
         [connectedTo]="boardData.columns | flatProperty:'slug'"
         (onDrop)="moveIssue($event)"
         (getDetails)="detailService.setVisible($event)"
-        (onCreateIssue)="createIssue(column.slug)"
+        (onCreateIssue)="modalService.setVisible(column.slug)"
         ></kms-panel>
     </ng-container>
   </div>
@@ -29,11 +29,14 @@
   (onTaskToggle)="toggleTask($event)"
 ></kms-details>
 
-<kms-modal *ngIf="modalService.isVisible()">
+<kms-modal *ngIf="modalService.isVisible()" (onHide)="modalService.setInvisible()">
   <div class="modal-content">
-    <kms-form
+    <kms-issue-form
       formTitle="Create new Issue"
       [columns]="boardStore.data()?.columns"
-    ></kms-form>
+      [users]="boardStore.data()?.participants | flatProperty:'email'"
+      [initColumn]="modalService.column()"
+      (onFormSubmit)="createIssue($event)"
+    ></kms-issue-form>
   </div>
 </kms-modal>

@@ -1,0 +1,71 @@
+<div class="title">
+  {{ formTitle() }}
+</div>
+<div class="input-blocks">
+  <!-- Name -->
+  <div class="input-block">
+    <label for="name">Name*:</label>
+    <input
+      id="name"
+      type="text"
+      [(ngModel)]="name"
+      (input)="checkFormValid()"
+      placeholder="Enter Title"
+    />
+  </div>
+  <!-- Columns -->
+  <div class="input-block">
+    <div class="added-data" *ngIf="columns.length > 0">
+      <div class="data-name">Columns*:</div>
+      <div class="data-list">
+        <div class="data-item" *ngFor="let column of columns">
+          <span class="data-text">{{ column }}</span>
+          <div class="data-remove" (click)="removeFromColumns(column)">&times;</div>
+        </div>
+      </div>
+    </div>
+    <label for="column">Column*:</label>
+    <input
+      id="column"
+      type="text"
+      [(ngModel)]="column"
+      (keydown.enter)="addToColumns()"
+      placeholder="Enter column name"
+    />
+    <div class="help">
+      Enter a column name and press "enter" button
+    </div>
+  </div>
+  <!-- Participants -->
+  <div class="input-block">
+    <div class="added-data" *ngIf="participants.length > 0">
+      <div class="data-name">Participants:</div>
+      <div class="data-list">
+        <div class="data-item" *ngFor="let participant of participants">
+          <span class="data-text">{{ participant }}</span>
+          <div class="data-remove" (click)="removeFromParticipants(participant)">&times;</div>
+        </div>
+      </div>
+    </div>
+    <label for="participant">Participant:</label>
+    <input
+      id="participant"
+      type="text"
+      [(ngModel)]="participant"
+      (keydown.enter)="addToParticipants()"
+      placeholder="Enter user's email"
+    />
+    <div class="help">
+      Specify an user's email and press "enter" button
+    </div>
+  </div>
+</div>
+<kms-button
+  label="Create Issue"
+  fullWidth
+  (onClick)="handleFormSubmit()"
+  [disabled]="isFormInvalid()"
+></kms-button>
+<div class="about">
+  * Required field
+</div>

@@ -28,3 +28,9 @@ export interface Moderator {
   email: string;
   avatar: string;
 }
+
+export interface CreateProjectRequest {
+  name: string;
+  columns: string[];
+  participants?: string[];
+}

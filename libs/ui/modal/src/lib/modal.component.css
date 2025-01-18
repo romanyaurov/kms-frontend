@@ -41,19 +41,6 @@
           color: var(--primary);
         }
       }
-
-      .masked-content {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-        overflow: scroll;
-        scrollbar-width: 0;
-        max-height: 35rem;
-        mask-image: linear-gradient(0deg, #ffffff00 0%, #ffffff 5%, #ffffff 95%, #ffffff00 100%);
-
-        &::-webkit-scrollbar {
-          display: none;
-        }
-      }
     }
   }
 }

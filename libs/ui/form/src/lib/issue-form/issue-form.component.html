@@ -2,35 +2,41 @@
   {{ formTitle() }}
 </div>
 <div class="input-blocks">
+  <!-- Title -->
   <div class="input-block">
     <label for="title">Title*:</label>
     <input
       id="title"
       type="text"
       [(ngModel)]="title"
+      (input)="checkFormValid()"
       placeholder="Enter Title"
     />
   </div>
+  <!-- Description -->
   <div class="input-block">
     <label for="description">Description*:</label>
     <input
       id="description"
       type="text"
       [(ngModel)]="description"
+      (input)="checkFormValid()"
       placeholder="Enter Description"
     />
   </div>
+  <!-- Column -->
   <div class="input-block" *ngIf="columns() as columns">
     <label for=column>Column*:</label>
-    <select id="column">
+    <select id="column" [(ngModel)]="column" (change)="checkFormValid()">
       <option
         *ngFor="let column of columns"
-        value="column.slug"
+        [value]="column.slug"
       >
         {{ column.title }}
       </option>
     </select>
   </div>
+  <!-- Assigned To -->
   <div class="input-block">
     <div class="added-data" *ngIf="assignedTo.length > 0">
       <div class="data-name">Assigned To:</div>
@@ -53,6 +59,7 @@
       Specify an user's email and press "enter" button
     </div>
   </div>
+  <!-- Tasks -->
   <div class="input-block">
     <div class="added-data" *ngIf="tasks.length > 0">
       <div class="data-name">Tasks:</div>
@@ -75,10 +82,25 @@
       Enter a task text and press "enter" button
     </div>
   </div>
+  <!-- Deadline -->
+  <div class="input-block">
+    <label for="deadline">Deadline:</label>
+    <input
+      id="deadline"
+      type="text"
+      [(ngModel)]="deadline"
+      placeholder="Enter deadline date"
+    />
+    <div class="help">
+      Enter a date in dd-mm-yyyy format
+    </div>
+  </div>
 </div>
 <kms-button
   label="Create Issue"
   fullWidth
+  (onClick)="handleFormSubmit()"
+  [disabled]="isFormInvalid()"
 ></kms-button>
 <div class="about">
   * Required field
