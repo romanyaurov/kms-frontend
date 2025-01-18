@@ -1,0 +1,32 @@
+<form [formGroup]="registerForm">
+  <kms-input-text
+    [control]="registerForm.controls.firstName"
+    label="First Name"
+    icon="fa fa-user-circle"
+  ></kms-input-text>
+  <kms-input-text
+    [control]="registerForm.controls.lastName"
+    label="Last Name"
+    icon="fa fa-user-circle-o"
+  ></kms-input-text>
+  <kms-input-text
+    [control]="registerForm.controls.email"
+    label="Email"
+    icon="fa fa-at"
+  ></kms-input-text>
+  <kms-input-text
+    [control]="registerForm.controls.password"
+    label="Password"
+    icon="fa fa-key"
+    type="password"
+  ></kms-input-text>
+  <kms-button
+    label="Enter"
+    [disabled]="!registerForm.valid"
+    (onClick)="submitForm()"
+    fullWidth
+  ></kms-button>
+</form>
+<div class="redirect">
+  <a routerLink="/login">Already have an account?</a>
+</div>

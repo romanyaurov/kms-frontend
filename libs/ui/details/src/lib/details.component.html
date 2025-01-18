@@ -9,7 +9,7 @@
         <div class="data-block description">
           <span>{{ issueData.description }}</span>
         </div>
-        <div class="data-block tasks" *ngIf="issueData.tasks">
+        <div class="data-block tasks" *ngIf="issueData.tasks!.length > 0">
           <kms-progress-bar
             [tasks]="issueData.tasks"
           ></kms-progress-bar>
@@ -19,7 +19,7 @@
             (onToggle)="onTaskToggle.emit($event)"
           ></kms-task>
         </div>
-        <div class="data-block assigned-to" *ngIf="issueData.assignedTo">
+        <div class="data-block assigned-to" *ngIf="issueData.assignedTo!.length > 0">
           <div class="user" *ngFor="let user of issueData.assignedTo">
             <kms-avatar
               [size]="36"

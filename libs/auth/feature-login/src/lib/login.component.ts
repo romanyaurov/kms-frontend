@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import {
   FormControl,
   FormGroup,
@@ -21,6 +22,7 @@ import { ButtonComponent } from '@kms-frontend/ui/button';
     InputTextComponent,
     CommonModule,
     ButtonComponent,
+    RouterModule
   ],
   styleUrl: 'login.component.css',
   templateUrl: 'login.component.html',

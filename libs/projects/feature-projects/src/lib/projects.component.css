@@ -5,6 +5,7 @@
   padding: 2rem 10rem 0;
 
   .new-project {
+    min-height: 12rem;
     background: var(--greyLight-1);
     box-shadow: var(--shadow);
     border-radius: 1rem;

@@ -2,7 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
 import { API_URL } from '@kms-frontend/core/data-access';
-import { Project, Issue, DefaultResponse } from '@kms-frontend/core/api-types';
+import {
+  Project,
+  Issue,
+  DefaultResponse,
+  CreateIssueRequest,
+} from '@kms-frontend/core/api-types';
 
 @Injectable({ providedIn: 'root' })
 export class BoardService {
@@ -15,7 +20,7 @@ export class BoardService {
     });
   }
 
-  private getIssues(projectSlug: string): Observable<Issue[]> {
+  public getIssues(projectSlug: string): Observable<Issue[]> {
     return this.http.get<Issue[]>(`${this.api_url}/issues/${projectSlug}`, {
       withCredentials: true,
     });
@@ -27,6 +32,12 @@ export class BoardService {
     return forkJoin({
       project: this.getProject(projectSlug),
       issues: this.getIssues(projectSlug),
+    });
+  }
+
+  public createIssue(payload: CreateIssueRequest): Observable<DefaultResponse> {
+    return this.http.post<DefaultResponse>(`${this.api_url}/issues`, payload, {
+      withCredentials: true,
     });
   }
 
@@ -49,7 +60,9 @@ export class BoardService {
 
   public toggleTask(taskId: string): Observable<DefaultResponse> {
     return this.http.post<DefaultResponse>(
-      `${this.api_url}/tasks/${taskId}`, {}, { withCredentials: true }
+      `${this.api_url}/tasks/${taskId}`,
+      {},
+      { withCredentials: true }
     );
   }
 }

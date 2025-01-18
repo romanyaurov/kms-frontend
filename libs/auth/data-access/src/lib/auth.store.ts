@@ -15,6 +15,7 @@ import {
   CookieUserKeys,
   DefaultResponse,
   LoginRequestPayload,
+  RegisterRequestPayload,
   User,
   UserResponse,
 } from '@kms-frontend/core/api-types';
@@ -87,6 +88,34 @@ export const AuthStore = signalStore(
                   cookieService.set(
                     CookieUserKeys.NAME,
                     loginResponse.user.firstName + loginResponse.user.lastName
+                  );
+                  router.navigateByUrl('projects');
+                },
+                error: (err) => {
+                  patchState(store, { isLoading: false });
+                  console.error(err);
+                },
+              })
+            );
+          })
+        )
+      ),
+      register: rxMethod<RegisterRequestPayload>(
+        pipe(
+          tap(() => patchState(store, { isLoading: true })),
+          switchMap((credentials) => {
+            return authService.register(credentials).pipe(
+              tapResponse({
+                next: (registerResponse: UserResponse) => {
+                  patchState(store, {
+                    user: registerResponse.user,
+                    isLoading: false,
+                  });
+                  cookieService.set(CookieUserKeys.EMAIL, registerResponse.user.email);
+                  cookieService.set(CookieUserKeys.ID, registerResponse.user.id);
+                  cookieService.set(
+                    CookieUserKeys.NAME,
+                    registerResponse.user.firstName + registerResponse.user.lastName
                   );
                   router.navigateByUrl('projects');
                 },

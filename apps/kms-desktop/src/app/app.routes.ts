@@ -13,6 +13,11 @@ export const appRoutes: Route[] = [
       import('@kms-frontend/feature-login').then((m) => m.LoginComponent),
   },
   {
+    path: 'register',
+    loadComponent: () => 
+      import('@kms-frontend/feature-register').then((m) => m.RegisterComponent),
+  },
+  {
     path: 'projects',
     loadComponent: () =>
       import('@kms-frontend/feature-projects').then((m) => m.ProjectsComponent),

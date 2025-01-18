@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   inject,
   OnInit,
@@ -40,6 +41,7 @@ export class BoardComponent implements OnInit {
   protected readonly boardStore = inject(BoardStore);
   protected readonly modalService = inject(ModalService);
   private readonly route = inject(ActivatedRoute);
+  // private readonly cdr = inject(ChangeDetectorRef);
   protected projectSlug!: string;
 
   ngOnInit(): void {
@@ -60,12 +62,14 @@ export class BoardComponent implements OnInit {
   }
 
   protected createIssue(issueData: Omit<CreateIssueRequest, 'project'>) {
-    const newIssue: CreateIssueRequest = {
+    const payload: CreateIssueRequest = {
       ...issueData,
       project: this.projectSlug,
     };
 
-    console.log(newIssue);
+    this.boardStore.createIssue({ payload });
+    this.boardStore.getBoardData({ projectSlug: this.projectSlug });
+    // this.cdr.detectChanges();
   }
 
   protected toggleTask(taskId: string) {

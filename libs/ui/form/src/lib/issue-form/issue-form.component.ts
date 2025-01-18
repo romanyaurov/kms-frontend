@@ -100,7 +100,7 @@ export class IssueFormComponent {
         alert('Deadline date can not be earlier that today date');
         return;
       }
-      formData.deadline = this.deadline;
+      formData.deadline = new Date([month, day, year].join('-')).toISOString();
     }
 
     this.onFormSubmit.emit(formData);

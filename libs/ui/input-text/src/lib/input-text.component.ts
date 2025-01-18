@@ -19,7 +19,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     <i [class]="icon()" aria-hidden="true"></i>
     <input
       [id]="label()"
-      [type]="password() ? 'password' : 'text'"
+      [type]="type()"
       [formControl]="control()"
     />
     <div class="validation-error">Invalid field value</div>
@@ -29,8 +29,5 @@ export class InputTextComponent {
   readonly label = input.required<string>();
   readonly control = input.required<FormControl>();
   readonly icon = input.required<string>();
-  readonly password = input(false, {
-    transform: (value: boolean | string) =>
-      typeof value === 'string' ? value === '' : value,
-  });
+  readonly type = input<'password' | 'text'>('text');
 }

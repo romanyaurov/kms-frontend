@@ -51,7 +51,8 @@ export class ProjectsComponent implements OnInit {
     this.projectsStore.getProjects({});
   }
 
-  protected createProject(projectData: CreateProjectRequest) {
-    console.log(projectData);
+  protected createProject(payload: CreateProjectRequest) {
+    this.projectsStore.createProject({ payload });
+    this.modalService.setInvisible();
   }
 }

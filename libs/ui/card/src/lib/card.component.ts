@@ -28,7 +28,7 @@ import { FlatProperty } from '@kms-frontend/core/tools';
         </div>
       </div>
       <div class="card-title" (click)="getDetails.emit(issue.id)">{{ issue.title }}</div>
-      <ng-container *ngIf="issue.tasks">
+      <ng-container *ngIf="issue.tasks!.length > 0">
         <kms-progress-bar
           [tasks]="issue.tasks"
         ></kms-progress-bar>

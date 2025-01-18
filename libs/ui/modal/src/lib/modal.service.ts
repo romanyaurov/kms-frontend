@@ -8,9 +8,11 @@ export class ModalService {
   public setVisible(columnSlug?: string) {
     columnSlug ? this.column.set(columnSlug) : undefined;
     this.isVisible.set(true);
+    document.body.style.overflow = "hidden";
   }
 
   public setInvisible() {
     this.isVisible.set(false);
+    document.body.style.overflow = "auto";
   }
 }

@@ -6,6 +6,7 @@ import {
   UserResponse,
   LoginRequestPayload,
   DefaultResponse,
+  RegisterRequestPayload,
 } from '@kms-frontend/core/api-types';
 
 @Injectable({ providedIn: 'root' })
@@ -17,6 +18,12 @@ export class AuthService {
     return this.http.post<UserResponse>(`${this.api_url}/login`, credentials, {
       withCredentials: true,
     });
+  }
+
+  public register(credentials: RegisterRequestPayload): Observable<UserResponse> {
+    return this.http.post<UserResponse>(`${this.api_url}/signup`, credentials, {
+      withCredentials: true,
+    })
   }
 
   public user(): Observable<UserResponse> {

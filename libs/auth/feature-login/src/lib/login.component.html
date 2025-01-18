@@ -8,7 +8,7 @@
     [control]="loginForm.controls.password"
     label="Password"
     icon="fa fa-key"
-    password
+    type="password"
   ></kms-input-text>
   <kms-button
     label="Enter"
@@ -17,3 +17,8 @@
     fullWidth
   ></kms-button>
 </form>
+<div class="redirect">
+  <a routerLink="/register">
+    Don't have an account yet?
+  </a>
+</div>
