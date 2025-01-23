@@ -59,7 +59,14 @@
     }
   }
 
-  &:has(input:focus),
+  &:has(input:focus) {
+    label {
+      top: -8px;
+      font-size: 0.8rem;
+      z-index: 0;
+    }
+  }
+  
   &:has(input.ng-dirty) {
     label {
       top: -8px;
