@@ -1,0 +1,28 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    if: "!contains(github.event.head_commit.message, '[skip cd]')"
+
+    runs-on: [self-hosted, Linux, X64]
+
+    steps:
+      - name: Stop server service
+        run: |
+          cd ~/kaban-ms
+          docker-compose stop frontend
+
+      - name: Pull latest changes from master
+        run: |
+          cd ~/kaban-ms/frontend
+          git pull origin master
+
+      - name: Build and start server service
+        run: |
+          cd ~/kaban-ms
+          docker-compose up -d --build frontend
